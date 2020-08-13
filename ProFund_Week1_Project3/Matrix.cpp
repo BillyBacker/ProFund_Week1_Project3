@@ -1,10 +1,5 @@
 #include<stdio.h>
 
-float sum(int Colum, int Row, float num, float Array2[3][3]) {
-	float Out = num * Array2[Colum][Row];
-	return Out;
-}
-
 int Matrix_show(float Array[9]) {
 	for (int ele_num = 0; ele_num < 9; ele_num+=3) {
 		printf("| ");
@@ -12,14 +7,6 @@ int Matrix_show(float Array[9]) {
 		printf("|\n");
 	}
 	return 0;
-}
-
-float cross_vector(float vector1[3], float vector2[3]) {
-	float sum = 0;
-	for (int i = 0; i < 3; i++) {
-		sum += vector1[i] * vector2[i];
-	}
-	return sum;
 }
 
 void transpose(float Matrix[9]) {
@@ -56,6 +43,15 @@ void dot(float Matrix1[9], float Matrix2[9]) {
 									+ (Matrix1[(M1_index*3) + 2] * Matrix2[(M2_index*3) + 2]);
 		}
 	}
+	transpose(Matrix2);
+	Matrix_show(buffer);
+}
+
+void plus(float Matrix1[9], float Matrix2[9]) {
+	float buffer[9];
+	for (int Index = 0; Index < 9; Index++){
+		buffer[Index] = Matrix1[Index] + Matrix2[Index];
+	}
 	Matrix_show(buffer);
 }
 
@@ -64,16 +60,32 @@ int main() {
 	float In1[9];
 	float In2[9];
 
-	printf("Enter Matrix 1 : \n");
+	printf("Matrix calculator\n");
+	printf("Input example :\n| 1 2 3\n| 4 5 6\n| 7 8 9\n\n");
+
+	printf("Enter Matrix A : \n");
 	for (int Ele_num = 0; Ele_num < 9; Ele_num += 3) {
 		printf("| ");
 		scanf_s("%f %f %f", &In1[Ele_num], &In1[Ele_num+1], &In1[Ele_num+2]);
 	}
 
-	printf("Enter Matrix 2 : \n");
+	printf("Enter Matrix B : \n");
 	for (int Ele_num = 0; Ele_num < 9; Ele_num += 3) {
 		printf("| ");
 		scanf_s("%f %f %f", &In2[Ele_num], &In2[Ele_num + 1], &In2[Ele_num + 2]);
 	}
+	printf("\nA Transpose\n");
+	transpose(In1);
+	Matrix_show(In1);
+	transpose(In1);
+	printf("\nB Transpose\n");
+	transpose(In2);
+	Matrix_show(In2);
+	transpose(In2);
+	printf("\nA + B\n");
+	plus(In1, In2);
+	transpose(In2);
+	printf("\nA dot B\n");
 	dot(In1, In2);
+	
 }
