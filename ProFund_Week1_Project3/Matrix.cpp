@@ -1,6 +1,6 @@
-#include<stdio.h>
+﻿#include<stdio.h>
 
-int Matrix_show(float Array[9]) {
+int Matrix_show(float Array[9]) { //ใช้ print แมทริกส์ในรูปแบบที่ถูกต้อง
 	for (int ele_num = 0; ele_num < 9; ele_num+=3) {
 		printf("| ");
 		printf("%.2f %.2f %.2f ", Array[ele_num], Array[ele_num+1], Array[ele_num+2]);
@@ -9,7 +9,7 @@ int Matrix_show(float Array[9]) {
 	return 0;
 }
 
-void transpose(float Matrix[9]) {
+void transpose(float Matrix[9]) { //ใช้ transpose แมทริกส์
 	float buffer[9];
 	for (int I = 0; I < 9; I++) {
 		if (I == 0 || I == 4 || I == 8) {
@@ -31,7 +31,7 @@ void transpose(float Matrix[9]) {
 	}
 }
 
-void dot(float Matrix1[9], float Matrix2[9]) {
+void dot(float Matrix1[9], float Matrix2[9]) { //ใช้หา dot product ระหว่างแมทริกส์ 2 ตัว
 	transpose(Matrix2);
 	float buffer[9];
 	int buffer_Index;
@@ -47,7 +47,7 @@ void dot(float Matrix1[9], float Matrix2[9]) {
 	Matrix_show(buffer);
 }
 
-void plus(float Matrix1[9], float Matrix2[9]) {
+void plus(float Matrix1[9], float Matrix2[9]) { //ใช้หาผลบวกของแมทริกส์
 	float buffer[9];
 	for (int Index = 0; Index < 9; Index++){
 		buffer[Index] = Matrix1[Index] + Matrix2[Index];
@@ -62,18 +62,19 @@ int main() {
 
 	printf("Matrix calculator\n");
 	printf("Input example :\n| 1 2 3\n| 4 5 6\n| 7 8 9\n\n");
-
+	//รับค่าของแมทริกส์ ตัวที่ 2
 	printf("Enter Matrix A : \n");
 	for (int Ele_num = 0; Ele_num < 9; Ele_num += 3) {
 		printf("| ");
 		scanf_s("%f %f %f", &In1[Ele_num], &In1[Ele_num+1], &In1[Ele_num+2]);
 	}
-
+	//รับค่าของแมทริกส์ ตัวที่ 2
 	printf("Enter Matrix B : \n");
-	for (int Ele_num = 0; Ele_num < 9; Ele_num += 3) {
+	for (int Ele_num = 0; Ele_num < 9; Ele_num += 3) { 
 		printf("| ");
 		scanf_s("%f %f %f", &In2[Ele_num], &In2[Ele_num + 1], &In2[Ele_num + 2]);
 	}
+	//แสดงผลคำนวน
 	printf("\nA Transpose\n");
 	transpose(In1);
 	Matrix_show(In1);
